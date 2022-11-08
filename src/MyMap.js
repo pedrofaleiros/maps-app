@@ -40,7 +40,7 @@ export class MyMap {
         const calculateButton = document.getElementById('action-button');
         calculateButton.addEventListener('click', async () => {
 
-            const res = await this.directionService.displayRoute();
+            const res = await this.directionService.calculateRoute();
 
             if (res) {
                 document.getElementById('autocomplete').disabled = true;

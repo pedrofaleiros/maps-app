@@ -13,26 +13,18 @@ export class DirectionService {
         this.directionsRenderer.setMap(map);
     }
 
-    async displayRoute() {
+    async calculateRoute() {
 
         const markers = utils.validateMarkers(this.repo.getMarkers());
 
         if (markers) {
 
-            let res = await this._distanceMatrix(markers);
+            //let res = await this._distanceMatrix(markers);
 
-            if (res) {
-                //"distance" or "duration"
-                const grafo = this._getGrafo(res, "distance");
+            return await this._distanceMatrix(markers);
 
-                const data = await this._request(grafo);
 
-                const ret = await this._displayRoute(data.route, markers);
 
-                return ret;
-            }
-
-            return false;
         } else {
             return false;
         }
@@ -64,9 +56,7 @@ export class DirectionService {
         return new Promise((resolve, reject) => {
             this.directionsService.route(routeOpt)
                 .then((response) => {
-                    console.log("routes: ", response);
                     this.directionsRenderer.setDirections(response);
-                    
                     resolve(true);
                 }).catch((e) => {
                     console.log('ERRO:', e)
@@ -76,9 +66,9 @@ export class DirectionService {
 
     }
 
-    _request(grafo) {
+    _request(grafo, markers) {
 
-        const url = 'https://3000-pedrofaleiros-teste-e1vb3ta7xnc.ws-us74.gitpod.io/get-route';
+        const url = "https://3000-pedrofaleiros-teste-8vfhnf9ofz1.ws-us74.gitpod.io"+'/get-route';
 
         const opt = {
             //mode: 'cors', // no-cors, *cors, same-origin
@@ -92,38 +82,14 @@ export class DirectionService {
                 .then((res) => {
                     return res.json();
                 })
-                .then((data) => {
-                    //console.log(data);
-                    resolve(data);
+                .then(async (data) => {
+                    resolve(await this._displayRoute(data.route, markers));
                 })
                 .catch((err) => {
                     console.log(err);
                     resolve(false);
                 });
         });
-    }
-
-    _getGrafo(response, tipo_str) {
-
-        const rows = response.rows;
-
-        let arestas = [];
-        let vertices = rows.length;
-
-        for (let i = 0; i < rows.length; i++) {
-            for (let j = i + 1; j < rows.length; j++) {
-                if (rows[i].elements[j].status == "OK") {
-                    arestas.push([i, j, rows[i].elements[j][`${tipo_str}`].text]);
-                }
-            }
-        }
-
-        const grafo = {
-            "vertices": vertices,
-            "arestas": arestas
-        }
-
-        return grafo;
     }
 
     _distanceMatrix(markers) {
@@ -146,10 +112,12 @@ export class DirectionService {
 
         return new Promise((resolve, reject) => {
 
-            this.distMatrix.getDistanceMatrix(request, (res, status) => {
+            this.distMatrix.getDistanceMatrix(request, async (res, status) => {
                 if (status == 'OK') {
-                    //console.log(res)
-                    resolve(res);
+                    const grafo = utils.getGrafo(res, "distance");
+                    if(grafo){
+                        resolve(await this._request(grafo, markers));
+                    }
                 } else {
                     resolve(false);
                 }

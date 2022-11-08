@@ -45,4 +45,29 @@ export class Utils {
 
         return false;
     }
+
+    getGrafo(response, tipo_str) {
+
+        const rows = response.rows;
+
+        let arestas = [];
+        let vertices = rows.length;
+
+        for (let i = 0; i < rows.length; i++) {
+            for (let j = i + 1; j < rows.length; j++) {
+                if (rows[i].elements[j].status == "OK") {
+                    arestas.push([i, j, rows[i].elements[j][`${tipo_str}`].text]);
+                }else{
+                    return false;
+                }
+            }
+        }
+
+        const grafo = {
+            "vertices": vertices,
+            "arestas": arestas
+        }
+
+        return grafo;
+    }
 }
