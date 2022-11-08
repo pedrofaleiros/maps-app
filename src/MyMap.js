@@ -13,7 +13,7 @@ export class MyMap {
         );
 
         this.markerService = new MarkerService();
-        this.directionService = new DirectionService();
+        this.directionService = new DirectionService(this.map);
     }
 
     initMap() {
@@ -42,16 +42,17 @@ export class MyMap {
 
             const res = await this.directionService.displayRoute();
 
-            console.log('res>>>', res);
-
             if (res) {
                 document.getElementById('autocomplete').disabled = true;
+                this.markerService.deleteAllMarkers();
             }
         });
     }
 
     addMarkerAutocomplete(place) {
         document.getElementById('autocomplete').value = '';
+
+        this.map.setCenter(place.geometry.location);
 
         this.markerService.addMarker(place.geometry.location, this.map);
     }

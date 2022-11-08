@@ -32,4 +32,8 @@ export class MarkerService {
     getMarkers() {
         return this.repo.getMarkers();
     }
+
+    deleteAllMarkers() {
+        this.repo.deleteAllMarkers();
+    }
 }

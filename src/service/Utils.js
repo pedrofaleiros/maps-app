@@ -23,8 +23,7 @@ export class Utils {
             }
         });
 
-        // mudar
-        if (markers.length > 1 && hasOrigin) {
+        if (markers.length > 3 && hasOrigin) {
             let validated_markers = [];
 
             markers.forEach((mk) => {
