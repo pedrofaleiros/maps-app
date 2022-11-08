@@ -17,13 +17,45 @@ export class MarkerRepository {
         this._markers.push(marker);
     }
 
-    removeMarker(id){
-        this._markers.forEach((mk, ind)=>{
-            if(mk.id === id && mk.isOrigin == false){
+    removeMarker(marker) {
+        this._markers.forEach((mk, ind) => {
+            if (mk.id === marker.id && mk.isOrigin == false) {
                 mk.setMap(null);
                 this._markers.splice(ind, 1);
             }
         });
+    }
+
+    setOrDisableOriginMarker(marker) {
+
+        if (marker.isOrigin) {
+            this._disableOriginMarker(marker);
+        } else {
+            if (this._hasOrigin == false) {
+                this._setOriginMarker(marker);
+            }
+        }
+    }
+
+    _disableOriginMarker(marker) {
+        this._markers.forEach((mk) => {
+            if (mk.id == marker.id) {
+                mk.isOrigin = false;
+                mk.setIcon(undefined);
+                this._hasOrigin = false;
+            }
+        });
+    }
+
+    _setOriginMarker(marker) {
+        this._markers.forEach((mk) => {
+            if (mk.id == marker.id) {
+                mk.isOrigin = true;
+                mk.setIcon(this._originIcon);
+                this._hasOrigin = true;
+            }
+        });
+
     }
 
     getMarkers() {
@@ -36,5 +68,18 @@ export class MarkerRepository {
         });
     }
 
+    deleteAllMarkers() {
+
+        this._markers.forEach((mk) => {
+            mk.setAnimation(google.maps.Animation.BOUNCE);
+
+            window.setTimeout(() => {
+                mk.setMap(null);
+            }, 300);
+        })
+
+        this._hasOrigin = false;
+        this._markers = [];
+    }
 
 }

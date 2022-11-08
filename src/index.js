@@ -1,6 +1,6 @@
 import { MyMap } from "./MyMap.js";
 
-function initMap() {
+function init() {
     const map = new MyMap();
     map.initMap();
 
@@ -17,4 +17,4 @@ function initMap() {
     });
 }
 
-window.initMap = initMap;
+window.initMap = init;

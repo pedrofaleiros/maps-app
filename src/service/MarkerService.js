@@ -1,13 +1,17 @@
 import { MarkerRepository } from "../repository/MarkerRepository.js";
-import { MarkerUtils } from "./MarkerUtils.js";
+import { Utils } from "./Utils.js";
 
-const utils = new MarkerUtils();
+const utils = new Utils();
 
 export class MarkerService {
     constructor() {
         this._id = 1001;
-        this._markers = [];
         this.repo = new MarkerRepository();
+        this.deleteMarkersButton = document.getElementById('del-btn');
+
+        this.deleteMarkersButton.addEventListener('click', () => {
+            this.repo.deleteAllMarkers();
+        });
     }
 
     addMarker(position /*: latLgn */, map) {
@@ -15,17 +19,17 @@ export class MarkerService {
         let marker = utils.newMarker(position, this._id++, map);//_newMarker(position, this._id++, map);
 
         marker.addListener('click', () => {
-            console.log(marker.id);
+            this.repo.setOrDisableOriginMarker(marker);
         });
 
         marker.addListener('rightclick', () => {
-            this.repo.removeMarker(marker.id);
+            this.repo.removeMarker(marker);
         });
 
         this.repo.addMarker(marker);
     }
 
-    getMarkers(){
+    getMarkers() {
         return this.repo.getMarkers();
     }
 }
