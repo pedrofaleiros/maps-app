@@ -27,7 +27,7 @@ export class MapController {
     addMapListeners() {
         this.map.addListener('click', (click) => {
             if (click.placeId && !this.trava) {
-                this.markerService.addMarker(click.latLng, this.map);
+                this.markerService.addMarker(click.latLng, this.map, null);
             }
         });
         this.map.addListener('rightclick', () => {
@@ -50,10 +50,11 @@ export class MapController {
         );
         autocomplete.addListener('place_changed', () => {
             const place = autocomplete.getPlace();
+            console.log(place);
             
             document.getElementById('autocomplete').value = '';
             this.map.setCenter(place.geometry.location);
-            this.markerService.addMarker(place.geometry.location, this.map);
+            this.markerService.addMarker(place.geometry.location, this.map, place.name);
         });
     }
 

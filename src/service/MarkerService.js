@@ -11,7 +11,7 @@ export class MarkerService {
         this.lugares = [];
     }
 
-    addMarker(position /*: latLgn */, map) {
+    addMarker(position /*: latLgn */, map, name) {
 
         let marker = utils.newMarker(position, this._id++, map);//_newMarker(position, this._id++, map);
 
@@ -26,9 +26,12 @@ export class MarkerService {
         this.repo.addMarker(marker);
 
         setTimeout(() => {
-            const aux = document.getElementsByClassName('title full-width');
-            // console.log(aux[0].innerHTML)
-            this.lugares.push({nome: aux[0].innerHTML, id: marker.id});
+            if(name == null){
+                const aux = document.getElementsByClassName('title full-width');
+                this.lugares.push({nome: aux[0].innerHTML, id: marker.id});
+            }else{
+                this.lugares.push({nome: name, id: marker.id});
+            }
 
         }, 200);
     }
