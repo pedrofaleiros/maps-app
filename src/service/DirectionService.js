@@ -19,12 +19,7 @@ export class DirectionService {
 
         if (markers) {
 
-            //let res = await this._distanceMatrix(markers);
-
             return await this._distanceMatrix(markers);
-
-
-
         } else {
             return false;
         }
@@ -68,7 +63,7 @@ export class DirectionService {
 
     _request(grafo, markers) {
 
-        const url = "https://3000-pedrofaleiros-teste-8vfhnf9ofz1.ws-us74.gitpod.io"+'/get-route';
+        const url = "APIKEY"+'/get-route';
 
         const opt = {
             //mode: 'cors', // no-cors, *cors, same-origin

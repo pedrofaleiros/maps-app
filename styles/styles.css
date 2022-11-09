@@ -25,7 +25,7 @@ button:hover {
     width: 100vw;
     margin: auto;
 
-    margin-top: 89vh;
+    margin-top: 90vh;
 
     display: flex;
     justify-content: center;
@@ -41,12 +41,12 @@ button:hover {
     position: absolute;
 
     background-color: #1a73e8;
-    color: white;
+    color: #fff;
 
     width: 9.5rem;
     height: 2.5rem;
 
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 500;
 
     display: flex;
@@ -108,11 +108,26 @@ button:hover {
     justify-content: end;
 }
 
-#del-icon {
+#rest-btn {
+    width: 100vw;
+
+    display: flex;
+    justify-content: end;
+    position: absolute;
+}
+
+#rest-icon:hover{
+    background-color: #148833;
+}
+
+#rest-icon:active{
+    font-size: 1.75rem;
+}
+
+#del-icon,
+#rest-icon {
     position: absolute;
     border-radius: 0.625rem;
-
-    margin-right: 1.25rem;
 
     display: flex;
     align-items: center;
@@ -121,30 +136,44 @@ button:hover {
     height: 2.5rem;
     width: 2.5rem;
 
+}
+
+#del-icon {
+    margin-right: 1.25rem;
     background-color: #e94235;
+}
+
+#rest-icon {
+    background-color: #34a853;
+    margin-right: 1.25rem;
+    display: none;
+    color: #fff;
+    border-radius: 5rem;
 }
 
 #del-icon:active {
     background-color: #d93225;
 }
 
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
 .help-container {
     width: 100vw;
     display: flex;
-    justify-content: end;
+    justify-content: start;
 }
 
 #help-button {
     position: absolute;
-    height: 2rem;
-    width: 2rem;
+    height: 1.75rem;
+    width: 1.75rem;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    margin-top: 3vh;
-    margin-right: 3vh;
+    margin-top: 91vh;
+    margin-left: 3vh;
 
     border-radius: 1.25rem;
 }
@@ -152,10 +181,10 @@ button:hover {
 #help-text {
     position: absolute;
     background-color: white;
-    width: 70vw;
+    width: 96vw;
     height: 94vh;
     margin-top: 3vh;
-    margin-left: 15vw;
+    margin-left: 2vw;
     border-radius: 0.3rem;
 
     z-index: 0;
@@ -164,6 +193,8 @@ button:hover {
 
     padding: 1rem;
 }
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
 .back-button {
     width: 100%;
@@ -196,4 +227,7 @@ button:hover {
 
     display: flex;
     justify-content: center;
+}
+
+.gm-style-iw , .gm-style-iw-c,  .gm-style-iw-tc {
 }

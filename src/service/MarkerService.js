@@ -7,11 +7,8 @@ export class MarkerService {
     constructor() {
         this._id = 1001;
         this.repo = new MarkerRepository();
-        this.deleteMarkersButton = document.getElementById('del-btn');
 
-        this.deleteMarkersButton.addEventListener('click', () => {
-            this.repo.deleteAllMarkers();
-        });
+        this.lugares = [];
     }
 
     addMarker(position /*: latLgn */, map) {
@@ -27,10 +24,21 @@ export class MarkerService {
         });
 
         this.repo.addMarker(marker);
+
+        setTimeout(() => {
+            const aux = document.getElementsByClassName('title full-width');
+            // console.log(aux[0].innerHTML)
+            this.lugares.push({nome: aux[0].innerHTML, id: marker.id});
+
+        }, 200);
     }
 
     getMarkers() {
         return this.repo.getMarkers();
+    }
+
+    getLugares() {
+        return this.lugares
     }
 
     deleteAllMarkers() {
