@@ -63,7 +63,7 @@ export class DirectionService {
 
     _request(grafo, markers) {
 
-        const url = "APIKEY"+'/get-route';
+        const url = "http://localhost:3000"+'/get-route';
 
         const opt = {
             //mode: 'cors', // no-cors, *cors, same-origin
@@ -78,7 +78,7 @@ export class DirectionService {
                     return res.json();
                 })
                 .then(async (data) => {
-                    resolve(await this._displayRoute(data.route, markers));
+                    resolve(await this._displayRoute(data.rota, markers));
                 })
                 .catch((err) => {
                     console.log(err);
