@@ -20,7 +20,7 @@ export class MapOptions {
             mapTypeControl: false,
             streetViewControl: false,
             fullscreenControl: false,
-            zoomControl: false
+            // zoomControl: false
         }
     }
     

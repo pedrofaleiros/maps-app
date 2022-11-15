@@ -32,9 +32,9 @@ export class DirectionService {
         }
 
         const origin = { lat: markers[route[0]].position.lat(), lng: markers[route[0]].position.lng() }
-        const destination = { lat: markers[route[route.length-1]].position.lat(), lng: markers[route[route.length-1]].position.lng() }
+        const destination = { lat: markers[route[route.length-2]].position.lat(), lng: markers[route[route.length-2]].position.lng() }
         var waypoints = [];
-        for (let i = 1; i < route.length - 1; i++) {
+        for (let i = 1; i < route.length - 2; i++) {
             waypoints.push(
                 { location: `${markers[route[i]].position.lat()}, ${markers[route[i]].position.lng()}` }
             )
@@ -81,7 +81,7 @@ export class DirectionService {
                     resolve(await this._displayRoute(data.rota, markers));
                 })
                 .catch((err) => {
-                    console.log(err);
+                    console.log('request', err);
                     resolve(false);
                 });
         });
@@ -115,6 +115,7 @@ export class DirectionService {
                     }
                 } else {
                     resolve(false);
+                    console.log("dist Matrix");
                 }
             });
 
