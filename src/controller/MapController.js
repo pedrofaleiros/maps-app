@@ -22,6 +22,7 @@ export class MapController {
         this.addAutocompleteListener();
         this.addHelpListener();
         this.addDeleteMarkersListener();
+
     }
 
     addMapListeners() {
@@ -69,10 +70,13 @@ export class MapController {
 
                 this.trava = true;
                 
-                document.getElementById('rest-icon').style.display = 'flex';
-                document.getElementById('del-icon').style.display = 'none';
+                document.getElementById('rest-btn').style.display = 'flex';
+                document.getElementById('del-btn').style.display = 'none';
                 calculateButton.style.display = 'none';
                 this.addRestartButtonListener();
+
+            }else{
+                console.log(res);
             }
         });
     }
@@ -88,17 +92,17 @@ export class MapController {
         const helpBtn = document.getElementById('help-button');
         helpBtn.addEventListener('click', () => {
             const helpText = document.getElementById('help-text');
-            if (helpText.style.zIndex == '10') {
-                helpText.style.zIndex = '0'
+            if (helpText.style.display == 'block') {
+                helpText.style.display = 'none'
             } else {
-                helpText.style.zIndex = '10';
+                helpText.style.display = 'block';
             }
         });
 
         const backBtn = document.getElementById('back-button');
         backBtn.addEventListener('click', () => {
             const helpText = document.getElementById('help-text');
-            helpText.style.zIndex = '0';
+            helpText.style.display = 'none';
         });
     }
 }

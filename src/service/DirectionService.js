@@ -11,6 +11,10 @@ export class DirectionService {
         this.directionsService = new google.maps.DirectionsService();
         this.directionsRenderer = new google.maps.DirectionsRenderer();
         this.directionsRenderer.setMap(map);
+        this.directionsRenderer.setPanel(document.getElementById('side'));
+        this.directionsRenderer.setOptions({
+            hideRouteList: true
+        });
     }
 
     async calculateRoute() {
@@ -32,9 +36,9 @@ export class DirectionService {
         }
 
         const origin = { lat: markers[route[0]].position.lat(), lng: markers[route[0]].position.lng() }
-        const destination = { lat: markers[route[route.length-2]].position.lat(), lng: markers[route[route.length-2]].position.lng() }
+        const destination = { lat: markers[route[route.length - 1]].position.lat(), lng: markers[route[route.length - 1]].position.lng() }
         var waypoints = [];
-        for (let i = 1; i < route.length - 2; i++) {
+        for (let i = 1; i < route.length - 1; i++) {
             waypoints.push(
                 { location: `${markers[route[i]].position.lat()}, ${markers[route[i]].position.lng()}` }
             )
@@ -51,19 +55,52 @@ export class DirectionService {
         return new Promise((resolve, reject) => {
             this.directionsService.route(routeOpt)
                 .then((response) => {
+                    console.log('response', response);
                     this.directionsRenderer.setDirections(response);
+
+                    const directions = this.directionsRenderer.getDirections();
+
+                    if (directions) {
+                        this.computeTotalDistance(directions);
+                    }
+
                     resolve(true);
                 }).catch((e) => {
                     console.log('ERRO:', e)
                     resolve(false);
                 });
         });
-
     }
+
+    computeTotalDistance(result) {
+        let total = 0;
+        let time = 0;
+        const myroute = result.routes[0];
+      
+        if (!myroute) {
+          return;
+        }
+
+        console.log('route>>>>', myroute);
+      
+        for (let i = 0; i < myroute.legs.length; i++) {
+          total += myroute.legs[i].distance.value;
+          time += myroute.legs[i].duration.value;
+        }
+
+        time = time/60;
+      
+        total = total / 1000;
+
+        const distance = document.getElementById("total");
+        distance.style.color = '#fff';
+        (document.getElementById('distancia')).style.color = '#fff';
+        distance.innerHTML = total + " km";
+      }
 
     _request(grafo, markers) {
 
-        const url = "http://localhost:3000"+'/get-route';
+        const url = "https://3000-pedrofaleiros-apiroutes-17w521zci97.ws-us75.gitpod.io" + '/get-route';
 
         const opt = {
             //mode: 'cors', // no-cors, *cors, same-origin
@@ -78,6 +115,7 @@ export class DirectionService {
                     return res.json();
                 })
                 .then(async (data) => {
+                    console.log(data);
                     resolve(await this._displayRoute(data.rota, markers));
                 })
                 .catch((err) => {
@@ -110,7 +148,9 @@ export class DirectionService {
             this.distMatrix.getDistanceMatrix(request, async (res, status) => {
                 if (status == 'OK') {
                     const grafo = utils.getGrafo(res, "distance");
-                    if(grafo){
+                    console.log('res', res);
+                    console.log('grafo', grafo);
+                    if (grafo) {
                         resolve(await this._request(grafo, markers));
                     }
                 } else {

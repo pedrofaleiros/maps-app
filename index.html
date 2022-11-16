@@ -23,6 +23,60 @@
 
 <body>
 
+    <div class="input-container">
+        <div class="input">
+            <span class="material-symbols-outlined" id="address-icon" id="world-icon">
+                public
+            </span>
+            <input type="text" id="autocomplete" placeholder="Digite um endereço...">
+        </div>
+    </div>
+
+    <div class="all">
+
+        <div id="map">
+        </div>
+
+        <div class="container">
+
+            <p id="distancia">Distancia Total: <span id="total"></span></p>
+            <div class="side-bar" id="side">
+                
+            </div>
+
+            <div class="buttons">
+
+                    <button id="action-button">
+                        <span class="material-symbols-outlined" id="direction-icon">
+                            directions
+                        </span>
+                    </button>
+
+                    <button id="rest-btn">
+                        <span class="material-symbols-outlined" id="rest-icon">
+                            cached
+                        </span>
+                        <p class="calcular">Resetar</p>
+                    </button>
+                    <button id="del-btn">
+                        <span class="material-symbols-outlined" id="del-icon">
+                            location_off
+                        </span>
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="help-container">
+        <button id="help-button">
+            <span class="material-symbols-outlined" id="address-icon" id="world-icon">
+                help
+            </span>
+        </button>
+    </div>
+
     <div id="help-text">
         <div class="back-button">
             <button id="back-button">
@@ -35,47 +89,6 @@
         <div class="text">
             area de texto
         </div>
-    </div>
-
-    <div id="map">
-    </div>
-
-    <div class="help-container">
-        <button id="help-button">
-            <span class="material-symbols-outlined" id="address-icon" id="world-icon">
-                help
-            </span>
-        </button>
-    </div>
-
-    <div class="input-container">
-        <div class="input">
-            <span class="material-symbols-outlined" id="address-icon" id="world-icon">
-                public
-            </span>
-            <input type="text" id="autocomplete" placeholder="Digite um endereço...">
-        </div>
-    </div>
-
-    <div id="button-container">
-        
-        <button id="rest-btn">
-            <span class="material-symbols-outlined" id="rest-icon">
-                cached
-            </span>
-        </button>
-
-        <button id="del-btn">
-            <span class="material-symbols-outlined" id="del-icon">
-                location_off
-            </span>
-        </button>
-        <button id="action-button">
-            <span class="material-symbols-outlined" id="direction-icon">
-                directions
-            </span>
-            <p class="calcular">Calcular</p>
-        </button>
     </div>
 
     <script src="./src/index.js" type="module"></script>
