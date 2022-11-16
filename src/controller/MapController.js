@@ -20,9 +20,7 @@ export class MapController {
         this.addMapListeners();
         this.addButtonListener();
         this.addAutocompleteListener();
-        this.addHelpListener();
         this.addDeleteMarkersListener();
-
     }
 
     addMapListeners() {
@@ -65,13 +63,14 @@ export class MapController {
             const res = await this.directionService.calculateRoute();
 
             if (res) {
-                document.getElementById('autocomplete').disabled = true;
+                document.getElementsByClassName('input-container')[0].style.display = 'none';
                 this.markerService.deleteAllMarkers();
 
                 this.trava = true;
                 
                 document.getElementById('rest-btn').style.display = 'flex';
                 document.getElementById('del-btn').style.display = 'none';
+                document.getElementById('tut').style.display = 'none';
                 calculateButton.style.display = 'none';
                 this.addRestartButtonListener();
 
@@ -88,7 +87,7 @@ export class MapController {
         });
     }
 
-    addHelpListener() {
+    /* addHelpListener() {
         const helpBtn = document.getElementById('help-button');
         helpBtn.addEventListener('click', () => {
             const helpText = document.getElementById('help-text');
@@ -104,5 +103,5 @@ export class MapController {
             const helpText = document.getElementById('help-text');
             helpText.style.display = 'none';
         });
-    }
+    } */
 }

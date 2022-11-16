@@ -100,7 +100,7 @@ export class DirectionService {
 
     _request(grafo, markers) {
 
-        const url = "https://3000-pedrofaleiros-apiroutes-17w521zci97.ws-us75.gitpod.io" + '/get-route';
+        const url = "http://localhost:3000" + '/get-route';
 
         const opt = {
             //mode: 'cors', // no-cors, *cors, same-origin
