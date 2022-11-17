@@ -21,18 +21,18 @@ export class DirectionService {
 
         const markers = utils.validateMarkers(this.repo.getMarkers());
 
-        if (markers) {
+        if (markers.status == 1) {
 
-            return await this._distanceMatrix(markers);
+            return await this._distanceMatrix(markers.data);
         } else {
-            return false;
+            return markers;
         }
     }
 
     _displayRoute(route, markers) {
 
         if (!route) {
-            return false;
+            return {"status":0, 'erro':'ERRO nos markers Display Route'};
         }
 
         const origin = { lat: markers[route[0]].position.lat(), lng: markers[route[0]].position.lng() }
@@ -64,10 +64,9 @@ export class DirectionService {
                         this.computeTotalDistance(directions);
                     }
 
-                    resolve(true);
-                }).catch((e) => {
-                    console.log('ERRO:', e)
-                    resolve(false);
+                    resolve({ 'status': 1 });
+                }).catch((err) => {
+                    resolve({ 'status': 0, 'erro': 'display route' + err });
                 });
         });
     }
@@ -76,27 +75,27 @@ export class DirectionService {
         let total = 0;
         let time = 0;
         const myroute = result.routes[0];
-      
+
         if (!myroute) {
-          return;
+            return;
         }
 
         console.log('route>>>>', myroute);
-      
+
         for (let i = 0; i < myroute.legs.length; i++) {
-          total += myroute.legs[i].distance.value;
-          time += myroute.legs[i].duration.value;
+            total += myroute.legs[i].distance.value;
+            time += myroute.legs[i].duration.value;
         }
 
-        time = time/60;
-      
+        time = time / 60;
+
         total = total / 1000;
 
         const distance = document.getElementById("total");
         distance.style.color = '#fff';
         (document.getElementById('distancia')).style.color = '#fff';
         distance.innerHTML = total + " km";
-      }
+    }
 
     _request(grafo, markers) {
 
@@ -115,12 +114,10 @@ export class DirectionService {
                     return res.json();
                 })
                 .then(async (data) => {
-                    console.log(data);
                     resolve(await this._displayRoute(data.rota, markers));
                 })
                 .catch((err) => {
-                    console.log('request', err);
-                    resolve(false);
+                    resolve({ 'status': 0, 'erro': 'ERRO no request da API - ' + err });
                 });
         });
     }
@@ -154,8 +151,7 @@ export class DirectionService {
                         resolve(await this._request(grafo, markers));
                     }
                 } else {
-                    resolve(false);
-                    console.log("dist Matrix");
+                    resolve({ 'status': 0, 'erro': 'distance Matrix' });
                 }
             });
 

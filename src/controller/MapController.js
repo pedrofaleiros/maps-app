@@ -62,7 +62,7 @@ export class MapController {
         calculateButton.addEventListener('click', async () => {
             const res = await this.directionService.calculateRoute();
 
-            if (res) {
+            if (res.status == 1) {
                 document.getElementsByClassName('input-container')[0].style.display = 'none';
                 this.markerService.deleteAllMarkers();
 
@@ -75,7 +75,8 @@ export class MapController {
                 this.addRestartButtonListener();
 
             }else{
-                console.log(res);
+                // console.log(res.erro);
+                alert(res.erro)
             }
         });
     }

@@ -23,7 +23,11 @@ export class Utils {
             }
         });
 
-        if (markers.length > 3 && hasOrigin) {
+        if(!hasOrigin){
+            return {'status':0, 'erro':'Selecione um local de origem'};
+        }
+
+        if (markers.length > 3) {
             let validated_markers = [];
 
             markers.forEach((mk) => {
@@ -34,16 +38,18 @@ export class Utils {
                 }
             });
 
-            return validated_markers.map((mk) => {
+            const ret = validated_markers.map((mk) => {
                 return {
                     id: mk.id,
                     isOrigin: mk.isOrigin,
                     position: mk.position
                 }
             });
+
+            return {'status':1, 'data':ret}
         }
 
-        return false;
+        return {'status':0, 'erro':'Selecione mais de 3 lugares'};
     }
 
     getGrafo(response, tipo_str) {
