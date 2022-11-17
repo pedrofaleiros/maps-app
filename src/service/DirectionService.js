@@ -100,7 +100,7 @@ export class DirectionService {
 
     _request(grafo, markers) {
 
-        const url = "http://localhost:3000" + '/get-route';
+        const url = "https://api-route.herokuapp.com/" + 'get-route';
 
         const opt = {
             //mode: 'cors', // no-cors, *cors, same-origin
