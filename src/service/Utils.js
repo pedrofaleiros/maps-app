@@ -23,10 +23,6 @@ export class Utils {
             }
         });
 
-        if(!hasOrigin){
-            return {'status':0, 'erro':'Selecione um local de origem'};
-        }
-
         if (markers.length > 3) {
             let validated_markers = [];
 
@@ -45,6 +41,10 @@ export class Utils {
                     position: mk.position
                 }
             });
+
+            if(!hasOrigin){
+                return {'status':0, 'erro':'Selecione um local de origem'};
+            }
 
             return {'status':1, 'data':ret}
         }

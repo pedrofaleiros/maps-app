@@ -63,7 +63,7 @@ export class MapController {
             const res = await this.directionService.calculateRoute();
 
             if (res.status == 1) {
-                document.getElementsByClassName('input-container')[0].style.display = 'none';
+                document.getElementById('auto').style.display = 'none';
                 this.markerService.deleteAllMarkers();
 
                 this.trava = true;
