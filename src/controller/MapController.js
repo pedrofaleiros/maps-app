@@ -60,6 +60,9 @@ export class MapController {
     addButtonListener() {
         const calculateButton = document.getElementById('action-button');
         calculateButton.addEventListener('click', async () => {
+
+            document.getElementById('loading').style.display = 'flex';
+
             const res = await this.directionService.calculateRoute();
 
             if (res.status == 1) {
@@ -78,6 +81,8 @@ export class MapController {
                 // console.log(res.erro);
                 alert(res.erro)
             }
+
+            document.getElementById('loading').style.display = 'none';
         });
     }
 
