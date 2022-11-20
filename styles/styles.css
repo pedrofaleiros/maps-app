@@ -161,7 +161,7 @@ button:hover {
     height: 75%;
     box-sizing: border-box;
     overflow: auto;
-    background-color: #eee;
+    background-color: #efefef;
 }
 #total {
     margin-left: 1rem;
@@ -177,7 +177,6 @@ button:hover {
 
     background-color: #21222c;
     border: 2px solid #ea4335;
-
 }
 
 .adp-text{
@@ -187,11 +186,10 @@ button:hover {
 /* >>>>>>>>>>>> tutorial <<<<<<<<<<<< */
 
 .tutorial {
-    background-color: #ddd;
     width: 100%;
     height: 100%;
 
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: center;
 }
@@ -217,4 +215,36 @@ button:hover {
     to {
         transform: rotate(1turn);
     }
+}
+
+/* >>>>>>>>>>>>>> text tutorial <<<<<<<<<<<<< */
+
+#text-container{
+    /* display: none; */
+    height: max-content;
+
+    background-color: #fff;
+}
+
+.text-tutorial {
+    word-wrap: break-word;
+    
+    color: #21222C;
+    padding: 0.5rem;
+
+    font-size: 1rem;
+    font-weight: bold;
+
+    text-align: left;
+
+    width: 80%;
+}
+
+.text-right{
+    margin-left: 20%;
+}
+
+.obs {
+    font-size: 0.6rem;
+    color: #1c738c;
 }

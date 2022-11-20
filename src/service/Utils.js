@@ -23,7 +23,7 @@ export class Utils {
             }
         });
 
-        if (markers.length > 3) {
+        if (markers.length > 3 && markers.length < 11) {
             let validated_markers = [];
 
             markers.forEach((mk) => {
@@ -49,7 +49,7 @@ export class Utils {
             return {'status':1, 'data':ret}
         }
 
-        return {'status':0, 'erro':'Selecione mais de 3 lugares'};
+        return {'status':0, 'erro':'Selecione entre 4 e 10 lugares lugares'};
     }
 
     getGrafo(response, tipo_str) {
