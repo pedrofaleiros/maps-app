@@ -73,6 +73,9 @@ export class MapController {
     document.getElementById("rest-btn").style.display = "flex";
     document.getElementById("del-btn").style.display = "none";
     document.getElementById("tut").style.display = "none";
+
+    document.getElementById('action-button').style.display = 'none'
+
     calculateButton.style.display = "none";
     this.addRestartButtonListener();
   }
@@ -92,6 +95,8 @@ export class MapController {
 
       if (res.status == 1) {
         this.markerService.deleteAllMarkers();
+
+        this.addPainel();
         this.trava = true;
       } else {
         this.voltaTutorial();
