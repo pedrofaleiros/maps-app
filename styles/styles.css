@@ -161,7 +161,7 @@ button:hover {
     height: 75%;
     box-sizing: border-box;
     overflow: auto;
-    background-color: #efefef;
+    background-color: #21222C;
 }
 #total {
     margin-left: 1rem;
@@ -170,18 +170,18 @@ button:hover {
 .adp-substep{
     display: none;
 }
-/* 
+
+.adp-summary{
+    color: #fff;
+}
+
 .adp-placemark{
     border-radius: 1rem;
     padding: 0.5rem;
 
-    background-color: #21222c;
+    background-color: #fff;
     border: 2px solid #ea4335;
 }
-
-.adp-text{
-    color: #eee;
-} */
 
 /* >>>>>>>>>>>> tutorial <<<<<<<<<<<< */
 
@@ -204,9 +204,9 @@ button:hover {
 
     border-radius: 50%;
 
-    border: solid 6px #aaa;
+    border: solid 6px #21222c33;
 
-    border-top-color: #34a853;
+    border-top-color: #5491F5;
 
     display: none;
 }
@@ -222,7 +222,7 @@ button:hover {
 #text-container{
     /* display: none; */
     height: max-content;
-
+    
     background-color: #fff;
 }
 
@@ -237,11 +237,11 @@ button:hover {
 
     text-align: left;
 
-    width: 80%;
+    width: 75%;
 }
 
 .text-right{
-    margin-left: 20%;
+    margin-left: 25%;
 }
 
 .obs {

@@ -76,7 +76,7 @@ export class MapController {
 
     document.getElementById('action-button').style.display = 'none'
 
-    calculateButton.style.display = "none";
+    document.getElementById("action-button").style.display = "none";
     this.addRestartButtonListener();
   }
 
