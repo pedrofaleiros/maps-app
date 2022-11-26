@@ -16,7 +16,7 @@ export class MapOptions {
             zoom: 12,
             center: bsb,
             styles: this.getStyle(),
-            disableDoubleClickZoom: true,
+            // disableDoubleClickZoom: true,
             mapTypeControl: false,
             streetViewControl: false,
             fullscreenControl: false,
