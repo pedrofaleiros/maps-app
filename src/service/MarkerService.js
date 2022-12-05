@@ -23,9 +23,6 @@ export class MarkerService {
             this.repo.removeMarker(marker);
         });
 
-
-        this.repo.addMarker(marker);
-
         setTimeout(() => {
             if (name == null) {
                 const aux = document.getElementsByClassName('title full-width');
@@ -40,7 +37,6 @@ export class MarkerService {
 
             const infowindow = new google.maps.InfoWindow({
                 content: '<div><strong>'+marker.name+'</strong></div>',
-                ariaLabel: "Brasilia"
             });
     
             marker.addListener('mouseover', () => {
@@ -55,6 +51,7 @@ export class MarkerService {
             });
         }, 100);
 
+        this.repo.addMarker(marker);
     }
 
     getMarkers() {

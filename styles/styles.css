@@ -183,6 +183,10 @@ button:hover {
     border: 2px solid #ea4335;
 }
 
+.adp-placemark:hover{
+    background-color: #ddd;
+}
+
 /* >>>>>>>>>>>> tutorial <<<<<<<<<<<< */
 
 .tutorial {

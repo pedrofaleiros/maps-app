@@ -98,6 +98,8 @@ export class Utils {
         const distance = document.getElementById("total");
         distance.style.color = '#fff';
         (document.getElementById('distancia')).style.color = '#fff';
-        distance.innerHTML = total + " km";
+        var str = total + " km";
+        str = str.replace('.', ',');
+        distance.innerHTML = str;
     }
 }

@@ -20,7 +20,7 @@ export class MarkerRepository {
     removeMarker(marker) {
         this._markers.forEach((mk, ind) => {
             if (mk.id === marker.id) {
-                if(mk.isOrigin){
+                if (mk.isOrigin) {
                     this._hasOrigin = false;
                 }
                 mk.setMap(null);
