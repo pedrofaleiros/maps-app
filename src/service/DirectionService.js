@@ -1,4 +1,5 @@
 import { MarkerRepository } from "../repository/MarkerRepository.js";
+import { MyDistanceMatrix } from "./MyDistanceMatrix.js";
 import { Utils } from "./Utils.js";
 
 const utils = new Utils();
@@ -6,15 +7,18 @@ const utils = new Utils();
 export class DirectionService {
     constructor(map) {
         this.repo = new MarkerRepository();
-        this.distMatrix = new google.maps.DistanceMatrixService();
 
-        this.directionsService = new google.maps.DirectionsService();
+        this.distMatrix = new MyDistanceMatrix(map);
+        
+        // this.distMatrix = new google.maps.DistanceMatrixService();
+
+        /* this.directionsService = new google.maps.DirectionsService();
         this.directionsRenderer = new google.maps.DirectionsRenderer();
         this.directionsRenderer.setMap(map);
         this.directionsRenderer.setPanel(document.getElementById('side'));
         this.directionsRenderer.setOptions({
             hideRouteList: true
-        });
+        }); */
     }
 
     async calculateRoute() {
@@ -23,13 +27,13 @@ export class DirectionService {
 
         if (markers.status == 1) {
 
-            return await this._distanceMatrix(markers.data);
+            return await this.distMatrix.calculate(markers.data);
         } else {
             return markers;
         }
     }
 
-    _displayRoute(route, markers) {
+    /* _displayRoute(route, markers) {
 
         if (!route) {
             return {"status":0, 'erro':'ERRO nos markers Display Route'};
@@ -126,5 +130,5 @@ export class DirectionService {
                 }
             });
         });
-    }
+    } */
 }
