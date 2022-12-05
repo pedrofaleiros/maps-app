@@ -55,13 +55,13 @@ export class DirectionService {
         return new Promise((resolve, reject) => {
             this.directionsService.route(routeOpt)
                 .then((response) => {
-                    console.log('response', response);
+                    // console.log('response', response);
                     this.directionsRenderer.setDirections(response);
 
                     const directions = this.directionsRenderer.getDirections();
 
                     if (directions) {
-                        this.computeTotalDistance(directions);
+                        utils.computeTotalDistance(directions);
                     }
 
                     resolve({ 'status': 1 });
@@ -71,39 +71,12 @@ export class DirectionService {
         });
     }
 
-    computeTotalDistance(result) {
-        let total = 0;
-        let time = 0;
-        const myroute = result.routes[0];
-
-        if (!myroute) {
-            return;
-        }
-
-        console.log('route>>>>', myroute);
-
-        for (let i = 0; i < myroute.legs.length; i++) {
-            total += myroute.legs[i].distance.value;
-            time += myroute.legs[i].duration.value;
-        }
-
-        time = time / 60;
-
-        total = total / 1000;
-
-        const distance = document.getElementById("total");
-        distance.style.color = '#fff';
-        (document.getElementById('distancia')).style.color = '#fff';
-        distance.innerHTML = total + " km";
-    }
-
     _request(grafo, markers) {
 
-        const url = "https://api-route.herokuapp.com/" + 'get-route';
+        const url = "https://api-routes-rosy-six.vercel.app/" + 'get-route';
 
         const opt = {
-            //mode: 'cors', // no-cors, *cors, same-origin
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(grafo)
         };
@@ -123,7 +96,6 @@ export class DirectionService {
     }
 
     _distanceMatrix(markers) {
-
         const places = markers.map((mk) => {
             return {
                 "lat": mk.position.lat(),
@@ -141,20 +113,18 @@ export class DirectionService {
         };
 
         return new Promise((resolve, reject) => {
-
             this.distMatrix.getDistanceMatrix(request, async (res, status) => {
                 if (status == 'OK') {
                     const grafo = utils.getGrafo(res, "distance");
-                    console.log('res', res);
-                    console.log('grafo', grafo);
                     if (grafo) {
                         resolve(await this._request(grafo, markers));
+                    }else{
+                        resolve({ 'status': 0, 'erro': 'Erro nos locais escolhidos' });
                     }
                 } else {
-                    resolve({ 'status': 0, 'erro': 'distance Matrix' });
+                    resolve({ 'status': 0, 'erro': 'Erro na API Google' });
                 }
             });
-
         });
     }
 }

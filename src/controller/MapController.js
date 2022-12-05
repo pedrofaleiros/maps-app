@@ -29,10 +29,6 @@ export class MapController {
         this.markerService.addMarker(click.latLng, this.map, null);
       }
     });
-    this.map.addListener("rightclick", () => {
-      console.log("lugares:");
-      this.markerService.getLugares().map((e) => console.log(e));
-    });
   }
 
   addDeleteMarkersListener() {
@@ -49,7 +45,6 @@ export class MapController {
     );
     autocomplete.addListener("place_changed", () => {
       const place = autocomplete.getPlace();
-      console.log(place);
 
       document.getElementById("autocomplete").value = "";
       this.map.setCenter(place.geometry.location);
@@ -111,22 +106,4 @@ export class MapController {
       window.location.reload(true);
     });
   }
-
-  /* addHelpListener() {
-        const helpBtn = document.getElementById('help-button');
-        helpBtn.addEventListener('click', () => {
-            const helpText = document.getElementById('help-text');
-            if (helpText.style.display == 'block') {
-                helpText.style.display = 'none'
-            } else {
-                helpText.style.display = 'block';
-            }
-        });
-
-        const backBtn = document.getElementById('back-button');
-        backBtn.addEventListener('click', () => {
-            const helpText = document.getElementById('help-text');
-            helpText.style.display = 'none';
-        });
-    } */
 }

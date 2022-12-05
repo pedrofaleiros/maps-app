@@ -76,4 +76,28 @@ export class Utils {
 
         return grafo;
     }
+
+    computeTotalDistance(result) {
+        let total = 0;
+        let time = 0;
+        const myroute = result.routes[0];
+
+        if (!myroute) {
+            return;
+        }
+
+        for (let i = 0; i < myroute.legs.length; i++) {
+            total += myroute.legs[i].distance.value;
+            time += myroute.legs[i].duration.value;
+        }
+
+        time = time / 60;
+
+        total = total / 1000;
+
+        const distance = document.getElementById("total");
+        distance.style.color = '#fff';
+        (document.getElementById('distancia')).style.color = '#fff';
+        distance.innerHTML = total + " km";
+    }
 }
