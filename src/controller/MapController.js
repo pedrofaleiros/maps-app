@@ -95,14 +95,10 @@ export class MapController {
         this.trava = true;
       } else {
         this.voltaTutorial();
-        // alert(res.erro);
 
         swal(res.erro, {
           icon: res.status == -1 ? 'error' : 'warning',
-          button: false
         });
-
-        swal.close();
       }
     });
   }

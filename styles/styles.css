@@ -257,3 +257,14 @@ button:hover {
 .swal-overlay {
     background-color: rgba(100, 100, 100, 0.5);
 }
+
+.swal-button {
+    background-color: #5491F5;
+    border: 0px;
+    border-radius: 5px;
+    width: 100px;
+}
+
+.swal-footer {
+    text-align: center;
+}

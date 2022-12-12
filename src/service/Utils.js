@@ -49,7 +49,7 @@ export class Utils {
             return {'status':1, 'data':ret}
         }
 
-        return {'status':0, 'erro':'Selecione entre 4 e 10 lugares lugares'};
+        return {'status':0, 'erro':'Selecione entre 4 e 10 lugares'};
     }
 
     getGrafo(response, tipo_str) {
