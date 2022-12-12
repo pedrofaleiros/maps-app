@@ -102,9 +102,7 @@ export class MapController {
           button: false
         });
 
-        setTimeout(() => {
-          swal.close();
-        }, 3000);
+        swal.close();
       }
     });
   }
