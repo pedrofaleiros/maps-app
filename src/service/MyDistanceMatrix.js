@@ -37,7 +37,7 @@ export class MyDistanceMatrix {
                         resolve({ 'status': 0, 'erro': 'Erro nos locais escolhidos' });
                     }
                 } else {
-                    resolve({ 'status': 0, 'erro': 'Erro na API Google' });
+                    resolve({ 'status': -1, 'erro': 'Erro na API Google' });
                 }
             });
         });

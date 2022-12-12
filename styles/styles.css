@@ -51,7 +51,7 @@ button:hover {
 #autocomplete {
     outline: none;
     width: 80%;
-    
+
 }
 
 /* >>>>>>>>>>> painel lateral <<<<<<<<<<<< */
@@ -163,19 +163,20 @@ button:hover {
     overflow: auto;
     background-color: #21222C;
 }
+
 #total {
     margin-left: 1rem;
 }
 
-.adp-substep{
+.adp-substep {
     display: none;
 }
 
-.adp-summary{
+.adp-summary {
     color: #fff;
 }
 
-.adp-placemark{
+.adp-placemark {
     border-radius: 1rem;
     padding: 0.5rem;
 
@@ -183,7 +184,7 @@ button:hover {
     border: 2px solid #ea4335;
 }
 
-.adp-placemark:hover{
+.adp-placemark:hover {
     background-color: #ddd;
 }
 
@@ -198,7 +199,7 @@ button:hover {
     justify-content: center;
 }
 
-#loading{
+#loading {
     position: absolute;
 
     animation: is-rotating 1.5s infinite;
@@ -223,16 +224,16 @@ button:hover {
 
 /* >>>>>>>>>>>>>> text tutorial <<<<<<<<<<<<< */
 
-#text-container{
+#text-container {
     /* display: none; */
     height: max-content;
-    
+
     background-color: #fff;
 }
 
 .text-tutorial {
     word-wrap: break-word;
-    
+
     color: #21222C;
     padding: 0.5rem;
 
@@ -244,11 +245,15 @@ button:hover {
     width: 75%;
 }
 
-.text-right{
+.text-right {
     margin-left: 25%;
 }
 
 .obs {
     font-size: 0.6rem;
     color: #1c738c;
+}
+
+.swal-overlay {
+    background-color: rgba(100, 100, 100, 0.5);
 }

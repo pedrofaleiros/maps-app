@@ -25,7 +25,7 @@ export class RequestApi {
                     resolve(await this.routeRenderer.displayRoute(data.rota, markers));
                 })
                 .catch((err) => {
-                    resolve({ 'status': 0, 'erro': 'ERRO no request da API - ' + err });
+                    resolve({ 'status': -1, 'erro': 'ERRO no request da API'});
                 });
         });
     }
